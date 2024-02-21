@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hash Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 15px;
+            width: 300px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #resultContainer {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            text-align: left;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #originalMessage,
+        #hashedMessage {
+            margin-top: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f0f0f0;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha256.js"></script>
+    <script>
+        function hashMessage() {
+            var userMessage = document.getElementById("userInput").value;
+            var sha256Hash = CryptoJS.SHA256(userMessage);
+
+            document.getElementById("originalMessage").innerHTML = "<strong>Original Message:</strong> " + userMessage;
+            document.getElementById("hashedMessage").innerHTML = "<strong>Hashed Message (SHA-256):</strong> " + sha256Hash;
+        }
+    </script>
+</head>
+<body>
+    <h1>Hash Generator</h1>
+
+    <label for="userInput">Enter a message to hash:</label>
+    <input type="text" id="userInput">
+
+    <button onclick="hashMessage()">Generate Hash</button>
+
+    <div id="resultContainer">
+        <div id="originalMessage"></div>
+        <div id="hashedMessage"></div>
+    </div>
+</body>
+</html>
